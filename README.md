@@ -10,13 +10,13 @@ Drug-protein affinity prediction - A comparison of active site residues and full
 
 
 ## Description
-This repository facilitates the reproduction of the experiments conducted in the paper [`Active site sequence representation of human kinases outperforms full sequence for affinity prediction and inhibitor generation: 3D effects in a 1D model`](https://chemrxiv.org/engage/chemrxiv/article-details/60ed9f6eaf9cdb0a4ddb803f). We provide scripts to:
+This repository facilitates the reproduction of the experiments conducted in the paper [`Active site sequence representation of human kinases outperforms full sequence for affinity prediction and inhibitor generation: 3D effects in a 1D model`](https://doi.org/10.33774/chemrxiv-2021-np7xj). We provide scripts to:
 1. Train and evaluate the BimodalMCA for drug-protein affinity prediction
 2. Evaluate the bimodal KNN affinity predictor either in a CV setting or on a plain train/test script
 3. Optimize a SMILES- or SELFIES-based molecular generative model to produce molecules with high binding affinities for a protein of interest (affinity is predicted with the KNN model).
 
 ### Data
-The preprocessed BindingDB data (CV and test data for ligand split and kinase split, data used for pretraining and affinity optimization) can be accessed on this [Box link](ibm.biz/active_site_data).
+The preprocessed BindingDB data (CV and test data for ligand split and kinase split, data used for pretraining and affinity optimization) can be accessed on this [Box link](https://ibm.biz/active_site_data).
 
 
 ## Installation
