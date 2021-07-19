@@ -11,6 +11,7 @@ on:
 jobs:
   # Testing only package installation 
   build: 
+    name: package
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -41,7 +42,7 @@ jobs:
 
   # Testing creation of conda env and execution of scripts
   conda-tests:
-    name: Test with conda (${{ matrix.os }})
+    name: conda env (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.experimental }}
     strategy:
@@ -110,5 +111,5 @@ jobs:
           text: "CI Build ${{ matrix.os }}"
           author_name: ${{ github.actor }}
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_HOOK_URL }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
