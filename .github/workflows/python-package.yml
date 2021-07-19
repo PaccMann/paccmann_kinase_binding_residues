@@ -1,0 +1,114 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Python package
+
+on:
+  push:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # Testing only package installation 
+  build: 
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.7]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install "pip>=19.1,<20.3"
+        python -m pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        python -m pip install .
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Test with pytest
+      run: |
+        python3 -c "import pkbr"
+        python3 -c "from pkbr.knn import KnnPredictor"
+
+  # Testing creation of conda env and execution of scripts
+  conda-tests:
+    name: Test with conda (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    continue-on-error: ${{ matrix.experimental }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            pip_cache_path: ~/.cache/pip
+            experimental: false
+          # Omitting tests on windows/macOS for brevity.
+    defaults:
+      run:
+        shell: bash -l {0}  # For conda
+    env:
+      # Increase this value to reset cache if conda.yml and requirements.txt
+      # have not changed
+      CACHE_NUMBER: 0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Cache conda
+        uses: actions/cache@v2
+        with:
+          path: ~/conda_pkgs_dir  # from: conda-incubator/setup-miniconda@v2
+          key: ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-${{
+            hashFiles('conda.yml') }}
+
+      - name: Cache pip
+        uses: actions/cache@v2
+        with:
+          path: ${{ matrix.pip_cache_path }}
+          key: ${{ runner.os }}-pip--${{ env.CACHE_NUMBER }}-${{
+            hashFiles('requirements.txt') }}
+
+      - name: Conda environment setup
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: pkbr
+          environment-file: conda.yml
+          auto-activate-base: false
+          use-only-tar-bz2: true  # This needs to be set for proper caching
+          auto-update-conda: true  # Required for windows for `use-only-tar-bz2`
+
+      - name: Conda list
+        run: conda list
+
+      - name: Install pkbr
+        run: |
+          pip install .
+
+      - name: Test scripts
+        run: |
+          python3 scripts/bimca_train.py -h
+          python3 scripts/bimca_test.py -h
+          python3 scripts/knn_cv.py -h
+          python3 scripts/knn_test.py -h
+          python3 scripts/gp_generation_selfies_knn.py -h
+          python3 scripts/gp_generation_smiles_knn.py -h
+
+      - name: Send Slack notification
+        uses: 8398a7/action-slack@v2
+        if: always()
+        with:
+          status: ${{ job.status }}
+          text: "CI Build ${{ matrix.os }}"
+          author_name: ${{ github.actor }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

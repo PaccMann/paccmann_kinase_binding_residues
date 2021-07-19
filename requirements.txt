@@ -1,0 +1,10 @@
+numpy>==1.16.1
+torch>=1.3,<1.5
+pytorch-lightning==1.0.5
+pandas>=1.0.1
+scikit-learn==0.22.1
+loguru==0.5.3
+scipy>=1.5.2
+python-Levenshtein>=0.12.0
+tqdm>=4.51.0
+paccmann_generator @ git+https://github.com/PaccMann/paccmann_generator@0.0.2

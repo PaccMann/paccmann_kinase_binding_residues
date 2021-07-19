@@ -1,0 +1,23 @@
+{
+    "augment_smiles": false,
+    "protein_augment": false,
+    "smiles_canonical": false,
+    "smiles_start_stop_token": true,
+    "ligand_padding_length": 696,
+    "receptor_padding_length": 2536,
+    "attention_size": 32,
+    "dense_hidden_sizes": [
+        64
+    ],
+    "activation_fn": "relu",
+    "dropout": 0.3,
+    "batch_norm": true,
+    "batch_size": 128,
+    "lr": 0.0003,
+    "epochs": 50,
+    "save_model": 2,
+    "final_activation": false,
+    "loss_fn": "mse",
+    "ligand_vocabulary_size": 575,
+    "receptor_vocabulary_size": 28
+}
