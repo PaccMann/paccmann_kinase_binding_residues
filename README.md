@@ -32,7 +32,7 @@ conda activate pkbr
 Afterwards you can execute the scripts to run the KNN, the BiMCA or the affinity optimization.
 
 ## Code examples
-All examples assume that you downloaded the data from [this Box link](https:/ibm.biz/active_site_data) and stored it in a folder `data` in the root of this repo.
+All examples assume that you downloaded the data from [this Box link](https://ibm.biz/active_site_data) and stored it in a folder `data` in the root of this repo.
 
 ### Running the KNN affinity predictor in a cross validation
 ```sh
