@@ -4,7 +4,8 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 
-Drug-protein affinity prediction - A comparison of active site residues and full protein sequences:
+**Modeling human kinases - A comparison of active site residues and full protein sequences.**
+**News**: The part about kinase-ligand binding affinity prediction will be presented at the [NeurIPS 2021 workshop](https://www.mlsb.io) on *Machine Learning for Structural Biology*.
 
 ![Summary GIF](https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/summary.gif "Summary GIF")
 
