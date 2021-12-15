@@ -1,23 +1,28 @@
-# paccmann_kinase_binding_residues
+# Active sites outperform full proteins for modeling human kinases
 [![Python package](https://github.com/PaccMann/paccmann_kinase_binding_residues/actions/workflows/python-package.yml/badge.svg)](https://github.com/PaccMann/paccmann_kinase_binding_residues/actions/workflows/python-package.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
+## Summary
+This repository contains data & code for the JCIM paper: [Active Site Sequence Representations of Human Kinases Outperform Full Sequence Representations for Affinity Prediction and Inhibitor Generation: 3D Effects in a 1D Model](https://pubs.acs.org/doi/10.1021/acs.jcim.1c00889). We study the impact of different protein sequence representations for modeling human kinases. We find that using **active site residues yields superior performance to using full protein sequences for predicting binding affinity**. We also study the difference of active site vs. full sequence on de-novo design tasks. We generate kinase inhibitors directly from protein sequences with our previously developed hybrid-VAE (PaccMann<sup>RL</sup>) but find no major differences between both kinase representations.
 
-**Modeling human kinases - A comparison of active site residues and full protein sequences.**
-**News**: The part about kinase-ligand binding affinity prediction will be presented at the [NeurIPS 2021 workshop](https://www.mlsb.io) on *Machine Learning for Structural Biology*.
+## News
+- December 2021: Our work has been published in the ACS [**Journal of Chemical Information & Modeling**](https://pubs.acs.org/doi/10.1021/acs.jcim.1c00889). Teaser: We will soon appear on the cover...
+- December 2021: The part about binding affinity prediction was presented at the [NeurIPS 2021 workshop on *Machine Learning for Structural Biology*](https://www.mlsb.io) and the [ELLIS Machine Learning for Molecule Discovery workshop](https://moleculediscovery.github.io/workshop2021/) alongside NeurIPS 2021.
+- November 2021: Our work has **won** the [🥇 #IOPP best poster award🥇](https://ioppublishing.org/twitter-conference/) in the category *Biomedical engineering* 
+- July 2021: A preliminary version of our work was presented at the [Twitter #IOPPposter conference](https://ioppublishing.org/twitter-conference/) (see GIF below ⬇️))
 
 ![Summary GIF](https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/summary.gif "Summary GIF")
 
 
 ## Description
-This repository facilitates the reproduction of the experiments conducted in the paper [`Active site sequence representation of human kinases outperforms full sequence for affinity prediction and inhibitor generation: 3D effects in a 1D model`](https://doi.org/10.33774/chemrxiv-2021-np7xj). We provide scripts to:
+This repository facilitates the reproduction of the experiments conducted in the JCIM paper [`Active Site Sequence Representations of Human Kinases Outperform Full Sequence Representations for Affinity Prediction and Inhibitor Generation: 3D Effects in a 1D Model`](https://pubs.acs.org/doi/10.1021/acs.jcim.1c00889). We provide scripts to:
 1. Train and evaluate the BimodalMCA for drug-protein affinity prediction
 2. Evaluate the bimodal KNN affinity predictor either in a CV setting or on a plain train/test script
 3. Optimize a SMILES- or SELFIES-based molecular generative model to produce molecules with high binding affinities for a protein of interest (affinity is predicted with the KNN model).
 
 ### Data
-The preprocessed BindingDB data (CV and test data for ligand split and kinase split, data used for pretraining and affinity optimization) can be accessed on this [Box link](https://ibm.biz/active_site_data).
+The preprocessed BindingDB data (CV and test data for ligand split and kinase split, data used for pretraining and affinity optimization) can be accessed on this [Box link](https://ibm.biz/active_site_data). We also release the aligned active site sequences (29 residues) for all kinases. If you use the data, please [cite](#citation) our work.
 
 
 ## Installation
@@ -82,14 +87,19 @@ python scripts/gp_generation_selfies_knn.py \
 
 
 ## Citation
-If you use this repo in your projects, please temporarily cite the following:
+If you use this repo or our data in your projects, please temporarily cite the following:
 
 ```bib
-@article{born2021active,
-  title={Active site sequence representation of human kinases outperforms full sequence for affinity prediction and inhibitor generation: 3D effects in a 1D model},
-  author={Born, Jannis and Huynh, Tien and Stroobants, Astrid and Cornell, Wendy and Manica, Matteo},
-  publisher={ChemRxiv},
-  doi={10.33774/chemrxiv-2021-np7xj},
-  year={2021}
+@article{born2022active,
+	author = {Born, Jannis and Huynh, Tien and Stroobants, Astrid and Cornell, Wendy D. and Manica, Matteo},
+	title = {Active Site Sequence Representations of Human Kinases Outperform Full Sequence Representations for Affinity Prediction and Inhibitor Generation: 3D Effects in a 1D Model},
+	journal = {Journal of Chemical Information and Modeling},
+	volume = {0},
+	number = {0},
+	pages = {null},
+	year = {0},
+	doi = {10.1021/acs.jcim.1c00889},
+	note ={PMID: 34905358},
+	URL = {https://doi.org/10.1021/acs.jcim.1c00889}
 }
 ```
