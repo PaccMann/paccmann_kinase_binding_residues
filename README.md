@@ -6,8 +6,10 @@
 ## Summary
 This repository contains data & code for the JCIM paper: [Active Site Sequence Representations of Human Kinases Outperform Full Sequence Representations for Affinity Prediction and Inhibitor Generation: 3D Effects in a 1D Model](https://pubs.acs.org/doi/10.1021/acs.jcim.1c00889). We study the impact of different protein sequence representations for modeling human kinases. We find that using **active site residues yields superior performance to using full protein sequences for predicting binding affinity**. We also study the difference of active site vs. full sequence on de-novo design tasks. We generate kinase inhibitors directly from protein sequences with our previously developed hybrid-VAE (PaccMann<sup>RL</sup>) but find no major differences between both kinase representations.
 
+
 ## News
-- December 2021: Our work has been published in the ACS [**Journal of Chemical Information & Modeling**](https://pubs.acs.org/doi/10.1021/acs.jcim.1c00889). Teaser: We will soon appear on the cover...
+- January 2022: We are proud to be featured on [**the JCIM cover**](https://pubs.acs.org/toc/jcisd8/62/2) with _an AI created artwork_! 👉  <img align="right" width="25%" height="25%" src="https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/cover.jpg">
+- December 2021: Our work has been published in the ACS [**Journal of Chemical Information & Modeling**](https://pubs.acs.org/doi/10.1021/acs.jcim.1c00889). 
 - December 2021: The part about binding affinity prediction was presented at the [NeurIPS 2021 workshop on *Machine Learning for Structural Biology*](https://www.mlsb.io) and the [ELLIS Machine Learning for Molecule Discovery workshop](https://moleculediscovery.github.io/workshop2021/) alongside NeurIPS 2021.
 - November 2021: Our work has **won** the [🥇 #IOPP best poster award🥇](https://ioppublishing.org/twitter-conference/) in the category *Biomedical engineering* 
 - July 2021: A preliminary version of our work was presented at the [Twitter #IOPPposter conference](https://ioppublishing.org/twitter-conference/) (see GIF below ⬇️))
@@ -87,17 +89,17 @@ python scripts/gp_generation_selfies_knn.py \
 
 
 ## Citation
-If you use this repo or our data in your projects, please temporarily cite the following:
+If you use this repo or our data in your projects, please cite the following:
 
 ```bib
 @article{born2022active,
 	author = {Born, Jannis and Huynh, Tien and Stroobants, Astrid and Cornell, Wendy D. and Manica, Matteo},
 	title = {Active Site Sequence Representations of Human Kinases Outperform Full Sequence Representations for Affinity Prediction and Inhibitor Generation: 3D Effects in a 1D Model},
 	journal = {Journal of Chemical Information and Modeling},
-	volume = {0},
-	number = {0},
-	pages = {null},
-	year = {0},
+	volume = {62},
+	number = {2},
+	pages = {240-257},
+	year = {2022},
 	doi = {10.1021/acs.jcim.1c00889},
 	note ={PMID: 34905358},
 	URL = {https://doi.org/10.1021/acs.jcim.1c00889}
