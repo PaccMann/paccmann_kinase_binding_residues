@@ -6,8 +6,9 @@
 ## Summary
 This repository contains data & code for the JCIM paper: [Active Site Sequence Representations of Human Kinases Outperform Full Sequence Representations for Affinity Prediction and Inhibitor Generation: 3D Effects in a 1D Model](https://pubs.acs.org/doi/10.1021/acs.jcim.1c00889). We study the impact of different protein sequence representations for modeling human kinases. We find that using **active site residues yields superior performance to using full protein sequences for predicting binding affinity**. We also study the difference of active site vs. full sequence on de-novo design tasks. We generate kinase inhibitors directly from protein sequences with our previously developed hybrid-VAE (PaccMann<sup>RL</sup>) but find no major differences between both kinase representations.
 
+
 ## News
-- January 2022: We are proud to be featured on [**on the cover of JCIM** (volume 62, issue 2)](https://pubs.acs.org/toc/jcisd8/62/2)!
+- January 2022: We are proud to be featured on [**the JCIM cover**](https://pubs.acs.org/toc/jcisd8/62/2) with _an AI created artwork_! 👉  <img align="right" width="25%" height="25%" src="https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/cover.jpg">
 - December 2021: Our work has been published in the ACS [**Journal of Chemical Information & Modeling**](https://pubs.acs.org/doi/10.1021/acs.jcim.1c00889). 
 - December 2021: The part about binding affinity prediction was presented at the [NeurIPS 2021 workshop on *Machine Learning for Structural Biology*](https://www.mlsb.io) and the [ELLIS Machine Learning for Molecule Discovery workshop](https://moleculediscovery.github.io/workshop2021/) alongside NeurIPS 2021.
 - November 2021: Our work has **won** the [🥇 #IOPP best poster award🥇](https://ioppublishing.org/twitter-conference/) in the category *Biomedical engineering* 
