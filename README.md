@@ -8,6 +8,7 @@ This repository contains data & code for the JCIM paper: [Active Site Sequence R
 
 
 ## News
+- March 2022: We added a[report](https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/as_comparison.pdf) with new experiments to compare our original active site sequence representations ([29 residues, see *Sheridan et al. (2012)*](https://pubs.acs.org/doi/abs/10.1021/ci900176y) with the 16 residues identified by [*Martin et al. (2010)](https://pubs.acs.org/doi/10.1021/ci200314j).
 - January 2022: We are proud to be featured on [**the JCIM cover**](https://pubs.acs.org/toc/jcisd8/62/2) with _an AI created artwork_! 👉  <img align="right" width="25%" height="25%" src="https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/cover.jpg">
 - December 2021: Our work has been published in the ACS [**Journal of Chemical Information & Modeling**](https://pubs.acs.org/doi/10.1021/acs.jcim.1c00889). 
 - December 2021: The part about binding affinity prediction was presented at the [NeurIPS 2021 workshop on *Machine Learning for Structural Biology*](https://www.mlsb.io) and the [ELLIS Machine Learning for Molecule Discovery workshop](https://moleculediscovery.github.io/workshop2021/) alongside NeurIPS 2021.
