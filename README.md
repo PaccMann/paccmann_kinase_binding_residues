@@ -89,6 +89,29 @@ python scripts/gp_generation_selfies_knn.py \
     selfies_sequence_generator/ -s 42 -t 0.85 -r 10 -n 50 -s 42 -i 40 -c 80
 ```
 
+## Choosing active-site sequences
+How to exactly define an "active site" is a critical choice. While we originally relied on
+the definition by [*Sheridan* et al. (2009)]() we have compared now to the active site
+definition by [*Martin* et al. (2012)]() and a *Combined* definition that uses a total of
+35 residues from either definitions. This improves performance significantly, especially
+for allosteric binders.
+
+Moreover, we have devised novel protein sequence augmentation schemes by flipping/swapping
+contiguous active-site subsequences that lie discontiguously in the full protein sequence.
+To train a model with such improved configuration, follow the [installation](##installation)
+setup and download the data from [Box](https://ibm.biz/active_site_data).
+
+Afterwards run:
+```sh
+python3 scripts/bimca_train.py \
+	data/ligand_split/fold_0/train.csv data/ligand_split/fold_0/validation.csv data/ligand_split/fold_0/test.csv \
+	human-kinase-alignment data/human_kinases_active_site_combined.smi data/ligands.smi data/smiles_vocab.json \
+	models config/active_site_augment.json -n combined_augment
+```
+You can modify `config/active_site_augment.json` to play with the hyperparameters and
+the probability of the augmentations.
+
+
 
 ## Citation
 If you use this repo or our data in your projects, please cite the following:

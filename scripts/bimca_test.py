@@ -3,7 +3,7 @@ import argparse
 import json
 import os
 from collections import OrderedDict
-
+from tqdm import tqdm
 import numpy as np
 import pandas as pd
 import pytorch_lightning as pl
@@ -118,7 +118,6 @@ def run_testing(
             ("protein_padding_length", params.get("receptor_padding_length", None)),
             ("protein_add_start_and_stop", params.get("protein_add_start_stop", True)),
             ("protein_augment_by_revert", False),
-            ("device", device),
             ("drug_affinity_dtype", torch.float),
             ("backend", "eager"),
             ("iterate_dataset", params.get("iterate_dataset", False)),
@@ -126,9 +125,18 @@ def run_testing(
     )
     logger.info("dataset arguments: {}".format(dataset_arguments))
     logger.info("preparing test dataset")
+
+    train_augment = params.get('protein_sequence_augment', {})
+    if train_augment == {}:
+        test_augment = {}
+    else:
+        test_augment = {
+            'discard_lowercase': train_augment.get('discard_lowercase', True),
+        }
     test_dataset = DrugAffinityDataset(
         drug_affinity_filepath=test_affinity_filepath,
         smiles_language=smiles_language,
+        protein_sequence_augment=test_augment,
         **dataset_arguments,
     )
     logger.info("test loader")
@@ -162,8 +170,6 @@ def run_testing(
     except NameError:
         raise NameError("Could not restore model")
 
-    logger.info("testing the model")
-
     ligand_names = test_dataset.drug_affinity_df[column_names[0]].values
     sequence_ids = test_dataset.drug_affinity_df[column_names[1]].values
     df_labels = test_dataset.drug_affinity_df[column_names[2]].values
@@ -171,9 +177,17 @@ def run_testing(
     model.eval()
     labels, predictions, loss_item = [], [], 0
     ligand_attention, protein_attention = [], []
-    for ind, (smiles, proteins, y) in enumerate(test_loader):
-        if ind > 0 and ind % 10 == 0:
+    logger.info("***Testing the model***\n")
+    for ind, (smiles, proteins, y) in tqdm(
+        enumerate(test_loader), total=len(test_loader), desc='Processing batches'
+    ):
+        if ind % 100 == 0:
             logger.info(f"Batch {ind}/{len(test_loader)}")
+            smi = smiles_language.token_indexes_to_smiles(smiles[0, :])
+            kin = test_dataset.protein_sequence_dataset.protein_language.token_indexes_to_sequence(
+                proteins[0, :].tolist()
+            )
+            logger.info(f"First sample of batch:\n Ligand={smi}, Kinase={kin}")
 
         # This verifies that no augmentation occurs, shuffle is False and that the
         # order of the dataloder is identical to the dataset

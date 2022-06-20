@@ -13,7 +13,6 @@ import pytorch_lightning as pl
 import torch
 from loguru import logger
 from paccmann_predictor.models.bimodal_mca import BimodalMCA
-from paccmann_predictor.utils.utils import get_device
 from pytoda.datasets.drug_affinity_dataset import DrugAffinityDataset
 from pytoda.smiles.smiles_language import SMILESTokenizer
 from scipy.stats import pearsonr, spearmanr
@@ -143,10 +142,6 @@ def run_training(
     model_dir = os.path.join(model_path, training_name)
     os.makedirs(model_dir, exist_ok=True)
     logger.info("set up model folder at {}".format(model_dir))
-    # setting device
-    device = get_device()
-    logger.info("using device {}".format(device))
-
     smiles_language = SMILESTokenizer(
         vocab_file=smiles_language_filepath,
         padding_length=params.get("ligand_padding_length", None),
@@ -174,7 +169,6 @@ def run_training(
             ("protein_padding_length", params.get("receptor_padding_length", None)),
             ("protein_add_start_and_stop", params.get("protein_add_start_stop", True)),
             ("protein_augment_by_revert", params.get("protein_augment", False)),
-            ("device", device),
             ("drug_affinity_dtype", torch.float),
             ("backend", "eager"),
             ("iterate_dataset", params.get("iterate_dataset", False)),
@@ -182,9 +176,22 @@ def run_training(
     )  # yapf: disable
     logger.info("shared dataset arguments: {}".format(dataset_shared_arguments))
     logger.info("preparing training dataset")
+    train_augment = params.get('protein_sequence_augment', {})
+    # If training augmentation is used, we have to trigger the pipeline also at
+    # test time to ensure that full sequences can be used even if the `protein_filepath`
+    # has only active sites (and `discard_lowercase` is False).
+    test_augment = (
+        {}
+        if train_augment == {}
+        else {
+            'discard_lowercase': train_augment.get('discard_lowercase', True),
+        }
+    )
+
     train_dataset = DrugAffinityDataset(
         drug_affinity_filepath=train_affinity_filepath,
         smiles_language=smiles_language,
+        protein_sequence_augment=train_augment,
         **dataset_shared_arguments,
     )
 
@@ -211,12 +218,14 @@ def run_training(
     dev_dataset = DrugAffinityDataset(
         drug_affinity_filepath=dev_affinity_filepath,
         smiles_language=eval_smiles_language,
+        protein_sequence_augment=test_augment,
         **dataset_shared_arguments,
     )
     logger.info("preparing test dataset")
     test_dataset = DrugAffinityDataset(
         drug_affinity_filepath=test_affinity_filepath,
         smiles_language=eval_smiles_language,
+        protein_sequence_augment=test_augment,
         **dataset_shared_arguments,
     )
     logger.info("updating language-related parameters")

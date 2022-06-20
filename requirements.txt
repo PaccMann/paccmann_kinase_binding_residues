@@ -7,4 +7,5 @@ loguru==0.5.3
 scipy>=1.5.2
 python-Levenshtein>=0.12.0
 tqdm>=4.51.0
+pytoda>=1.1.0
 paccmann_generator @ git+https://github.com/PaccMann/paccmann_generator@0.0.2

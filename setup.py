@@ -19,7 +19,7 @@ scripts = []
 
 setup(
     name="pkbr",
-    version="0.0.1",
+    version="0.0.2",
     description="PaccMann on kinase binding residues",
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
@@ -35,7 +35,7 @@ setup(
         "paccmann_gp @ git+https://git@github.com/PaccMann/paccmann_gp/@0.1.0",
         "paccmann_predictor @ git+https://git@github.com/PaccMann/paccmann_predictor/@0.0.4",
         "python-Levenshtein",
-        "pytoda @ git+https://git@github.com/PaccMann/paccmann_datasets/@0.2.5",
+        "pytoda>=1.1.1",
         "pytorch_lightning",
         "rdkit-pypi",
         "torch",

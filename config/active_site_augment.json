@@ -1,0 +1,42 @@
+{
+    "augment_smiles": false,
+    "protein_augment": false,
+    "smiles_canonical": false,
+    "smiles_start_stop_token": true,
+    "ligand_padding_length": 696,
+    "receptor_padding_length": 38,
+    "attention_size": 64,
+    "dense_hidden_sizes": [
+        200
+    ],
+    "ligand_filters": [
+        128,
+        128,
+        128
+    ],
+    "receptor_filters": [
+        128,
+        128,
+        128
+    ],
+    "activation_fn": "relu",
+    "dropout": 0.3,
+    "batch_norm": true,
+    "batch_size": 128,
+    "lr": 0.0005,
+    "epochs": 50,
+    "save_model": 2,
+    "final_activation": false,
+    "loss_fn": "mse",
+    "ligand_vocabulary_size": 575,
+    "receptor_vocabulary_size": 28,
+    "protein_sequence_augment": {
+        "flip_substrings": 0.3,
+        "swap_substrings": 0.2,
+        "noise": [
+            0.0,
+            0.1
+        ],
+        "discard_lowercase": true
+    }
+}
