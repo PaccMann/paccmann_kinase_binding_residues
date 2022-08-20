@@ -98,7 +98,7 @@ for allosteric binders.
 
 Moreover, we have devised novel protein sequence augmentation schemes by flipping/swapping
 contiguous active-site subsequences that lie discontiguously in the full protein sequence.
-To train a model with such improved configuration, follow the [installation](##installation)
+To train a model with such improved configuration, follow the [installation](#installation)
 setup and download the data from [Box](https://ibm.biz/active_site_data).
 
 Afterwards run:
