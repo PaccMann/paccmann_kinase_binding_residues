@@ -11,7 +11,7 @@ This repository contains data & code for the JCIM paper: [Active Site Sequence R
 
 
  <p align="center">
-<img width="60%" height="60%" src="https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/full_vs_active_site.png">
+<img width="75%" height="75%" src="https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/full_vs_active_site.png">
  </p>
 
 ## News
@@ -101,14 +101,15 @@ python scripts/gp_generation_selfies_knn.py \
 See our new letter in [JCIM](https://pubs.acs.org/doi/full/10.1021/acs.jcim.2c00840). 
 
 #### Definitions
-<img align="right" width="52%" height="52%" src="https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/definitions.jpg">
+<img align="right" width="60%" height="60%" src="https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/definitions.jpg">
+
 How to exactly define an "active site" is a critical choice. While we originally relied on
 the definition by [Sheridan et al. (2009)](https://pubs.acs.org/doi/10.1021/ci900176y) we have compared now to the active site
 definition by [Martin et al. (2012)](https://pubs.acs.org/doi/full/10.1021/ci200314j) and a *Combined* definition that uses a total of
 35 residues from either definitions. This improves performance significantly, especially
 for allosteric binders.
 
-<img align="right" width="52%" height="52%" src="https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/augmentations.png">
+<img align="right" width="60%" height="60%" src="https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/augmentations.png">
 
 #### Augmentations
 
