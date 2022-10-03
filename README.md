@@ -2,18 +2,23 @@
 [![Python package](https://github.com/PaccMann/paccmann_kinase_binding_residues/actions/workflows/python-package.yml/badge.svg)](https://github.com/PaccMann/paccmann_kinase_binding_residues/actions/workflows/python-package.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![DOI:10.1021/acs.jcim.1c00889](https://zenodo.org/badge/DOI/10.1021/acs.jcim.1c00889.svg)](https://doi.org/10.1021/acs.jcim.1c00889)
+[![DOI:10.1021/acs.jcim.2c00840](https://zenodo.org/badge/DOI/10.1021/acs.jcim.2c00840.svg)](https://doi.org/10.1021/acs.jcim.2c00840)
 
-<img align="center" width="75%" height="75%" src="https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/full_vs_active_site.png">
 
 ## Summary
 This repository contains data & code for the JCIM paper: [Active Site Sequence Representations of Human Kinases Outperform Full Sequence Representations for Affinity Prediction and Inhibitor Generation: 3D Effects in a 1D Model](https://pubs.acs.org/doi/10.1021/acs.jcim.1c00889). We study the impact of different protein sequence representations for modeling human kinases. We find that using **active site residues yields superior performance to using full protein sequences for predicting binding affinity**. We also study the difference of active site vs. full sequence on de-novo design tasks. We generate kinase inhibitors directly from protein sequences with our previously developed hybrid-VAE (PaccMann<sup>RL</sup>) but find no major differences between both kinase representations.
 
 
+ <p align="center">
+<img width="60%" height="60%" src="https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/full_vs_active_site.png">
+ </p>
+
 ## News
 - October 2022: Our report on comparing different definitions of kinase active sites has been published as a *letter* in the ACS [**Journal of Chemical Information & Modeling**](https://pubs.acs.org/doi/full/10.1021/acs.jcim.2c00840). 
 Therein, we also propose several **novel protein sequence augmentation strategies**.
 - March 2022: We added a report with new experiments to compare our original active site sequence representations ([29 residues, see *Sheridan et al. (2012)*](https://pubs.acs.org/doi/abs/10.1021/ci900176y) with the 16 residues identified by [*Martin et al. (2010)](https://pubs.acs.org/doi/10.1021/ci200314j). (The report is now longer available since it has been superseded by the [JCIM letter](https://pubs.acs.org/doi/full/10.1021/acs.jcim.2c00840).)
-- January 2022: We are proud to be featured on [**the JCIM cover**](https://pubs.acs.org/toc/jcisd8/62/2) with _an AI created artwork_! 👉  <img align="right" width="25%" height="25%" src="https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/cover.jpg">
+- January 2022: We are proud to be featured on [**the JCIM cover**](https://pubs.acs.org/toc/jcisd8/62/2) with _an AI artwork_! 👉  <img align="right" width="25%" height="25%" src="https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/cover.jpg">
 - December 2021: Our work has been published in the ACS [**Journal of Chemical Information & Modeling**](https://pubs.acs.org/doi/10.1021/acs.jcim.1c00889). 
 - December 2021: The part about binding affinity prediction was presented at the [NeurIPS 2021 workshop on *Machine Learning for Structural Biology*](https://www.mlsb.io) and the [ELLIS Machine Learning for Molecule Discovery workshop](https://moleculediscovery.github.io/workshop2021/) alongside NeurIPS 2021.
 - November 2021: Our work has **won** the [🥇 #IOPP best poster award🥇](https://ioppublishing.org/twitter-conference/) in the category *Biomedical engineering* 
@@ -96,22 +101,24 @@ python scripts/gp_generation_selfies_knn.py \
 See our new letter in [JCIM](https://pubs.acs.org/doi/full/10.1021/acs.jcim.2c00840). 
 
 #### Definitions
-<img align="center" width="70%" height="70%" src="https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/definitions.jpg">
-
+<img align="right" width="52%" height="52%" src="https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/definitions.jpg">
 How to exactly define an "active site" is a critical choice. While we originally relied on
-the definition by [*Sheridan* et al. (2009)](https://pubs.acs.org/doi/10.1021/ci900176y) we have compared now to the active site
-definition by [*Martin* et al. (2012)](https://pubs.acs.org/doi/full/10.1021/ci200314j) and a *Combined* definition that uses a total of
+the definition by [Sheridan et al. (2009)](https://pubs.acs.org/doi/10.1021/ci900176y) we have compared now to the active site
+definition by [Martin et al. (2012)](https://pubs.acs.org/doi/full/10.1021/ci200314j) and a *Combined* definition that uses a total of
 35 residues from either definitions. This improves performance significantly, especially
 for allosteric binders.
 
+<img align="right" width="52%" height="52%" src="https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/augmentations.png">
+
 #### Augmentations
-<img align="center" width="70%" height="70%" src="https://github.com/PaccMann/paccmann_kinase_binding_residues/blob/master/assets/augmentations.png">
 
 We also devised novel protein sequence augmentation schemes by flipping/swapping
 contiguous active-site subsequences that lie discontiguously in the full protein sequence.
 
 To train a model with the new active site definition and the new augmentation, follow the [installation](#installation)
 setup and download the data from [Box](https://ibm.biz/active_site_data).
+
+
 
 Afterwards run:
 ```sh
